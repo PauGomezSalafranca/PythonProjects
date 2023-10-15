@@ -1,5 +1,10 @@
 import numpy as np
 
+#####################################################################################################
+# In this part of the program we are going to perform several fundamental operations on the matrices#
+
+
+
 # Prompt the user to enter the dimensions of the first matrix
 rows_A = int(input("Ingrese el número de filas de la primera matriz: "))
 cols_A = int(input("Ingrese el número de columnas de la primera matriz: "))
@@ -26,41 +31,56 @@ for i in range(rows_B):
     for j in range(cols_B):
         B[i, j] = float(input(f"Elemento B[{i}][{j}]: "))
 
+np.set_printoptions(precision=2, suppress=True)
+# We check if we can add the matrices and if so, we add them.
+
+if cols_A != cols_B and rows_A != rows_B:
+    print("\nLas matrices no se pueden sumar ya que no tienen las mismas dimensiones")
+else:
+    D = A + B
+    print("\nEl resultado de la suma de las matrices: ")
+    print(D)
+
+
+# We check if we can subtract the matrices and if so, we subtract them.
+
+if cols_A != cols_B and rows_A != rows_B:
+    print("\nLas matrices no se pueden restar ya que no tienen las mismas dimensiones")
+else:
+    E = A + B
+    print("\nEl resultado de la resta de las matrices: ")
+    print(E)
+
+
 # Check if the matrices are multipliable
 if cols_A != rows_B:
-    print("No es posible multiplicar las matrices debido a dimensiones incompatibles.")
+    print("\nNo es posible multiplicar las matrices debido a dimensiones incompatibles.")
 else:
     # Perform matrix multiplication
     C = np.dot(A, B)
-    print("El resultado de la multiplicación es:")
+    print("\nEl resultado de la multiplicación es:")
     print(C)
 
-# Another matrix operations
 
-if cols_A != cols_B and rows_A != rows_B:
-    print("Las matrices no se pueden sumar ya que no tienen las mismas dimensiones")
-else:
-    D = A + B
-    print("El resultado de la suma de las matrices: ")
-    print(D)
+# We check if the determinant of the second matrix is different from zero, 
+# and if it is, we invert it and multiply it to the first matrix to perform a matrix division.
 
-if cols_A != cols_B and rows_A != rows_B:
-    print("Las matrices no se pueden restar ya que no tienen las mismas dimensiones")
-else:
-    E = A + B
-    print("El resultado de la resta de las matrices: ")
-    print(E)
 if cols_B != rows_B:
-    print("La matriz no es cuadrada por lo que no se puede realizar su determinante para invertirla")
+    print("\nLa matriz no es cuadrada por lo que no se puede realizar su determinante para invertirla")
 else:
     if np.linalg.det(B) == 0:
-        print("La segunda matriz que has introducido no es invertible, por lo que no se puede realizar una division entre estas dos")
+        print("\nLa segunda matriz que has introducido no es invertible, por lo que no se puede realizar una division entre estas dos")
     else:
+        
         B_inv = np.linalg.inv(B)
         F = np.dot(A,B_inv)
-        print("El resultado de dividir las dos matrices: ")
+        print("\nEl resultado de dividir las dos matrices: ")
         print(F)
 
 
-print("El resultado del producto tensorial de tus dos matrices: ")
+# Tensor product of matrices (No need to check, can always be performed)
+
+print("\nEl resultado del producto tensorial de tus dos matrices: ")
 print(np.kron(A,B))
+
+#####################################################################################################
